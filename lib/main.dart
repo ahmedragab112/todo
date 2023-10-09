@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'layout/home.dart';
+import 'package:todo/router/router.dart';
+import 'package:todo/router/routes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
@@ -11,14 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      onGenerateRoute: AppRouter.generatRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
-      initialRoute: HomePage.routeName,
-      routes: {
-        HomePage.routeName: (context) => const HomePage(),
-      },
+      initialRoute: Routes.homeLayout,
     );
   }
 }
