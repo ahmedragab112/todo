@@ -15,7 +15,7 @@ class SettingBox extends StatelessWidget {
         height: 50,
         width: 319,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color:Theme.of(context).colorScheme.background,
             border: Border.all(color: AppColor.primryColorLight, width: 2),
             shape: BoxShape.rectangle),
         child:

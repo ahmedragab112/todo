@@ -18,11 +18,13 @@ class LanguageBottomSheet extends StatelessWidget {
             onTap: () {
               provider.changeLanguage('en');
             },
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('English'),
-                Icon(Icons.done),
+                const Text('English'),
+                provider.languageCode == 'en'
+                    ? const Icon(Icons.done)
+                    : const SizedBox.shrink()
               ],
             ),
           ),
@@ -33,11 +35,13 @@ class LanguageBottomSheet extends StatelessWidget {
             onTap: () {
               provider.changeLanguage('ar');
             },
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Arabic'),
-                Icon(Icons.done),
+                const Text('Arabic'),
+                provider.languageCode == 'ar'
+                    ? const Icon(Icons.done)
+                    : const SizedBox.shrink(),
               ],
             ),
           )
