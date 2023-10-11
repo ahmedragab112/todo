@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class LanguageBottomSheet extends StatelessWidget {
   const LanguageBottomSheet({super.key});
 
@@ -21,7 +21,7 @@ class LanguageBottomSheet extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('English'),
+                 Text(AppLocalizations.of(context)!.english,),
                 provider.languageCode == 'en'
                     ? const Icon(Icons.done)
                     : const SizedBox.shrink()
@@ -38,7 +38,7 @@ class LanguageBottomSheet extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Arabic'),
+                 Text(AppLocalizations.of(context)!.arabic,),
                 provider.languageCode == 'ar'
                     ? const Icon(Icons.done)
                     : const SizedBox.shrink(),

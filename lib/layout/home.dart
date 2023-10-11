@@ -3,6 +3,7 @@ import 'package:todo/screens/settings/setting_tab.dart';
 import 'package:todo/screens/taskes/home_tasks.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/add_task_bottom_sheet.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({super.key});
@@ -20,7 +21,7 @@ class _HomeLayoutState extends State<HomeLayout> {
       extendBody: true,
       appBar: AppBar(
         title: Text(
-          index == 0 ? 'To Do' : 'Settings',
+          index == 0 ? AppLocalizations.of(context)!.todo: AppLocalizations.of(context)!.setting,
           style: Theme.of(context)
               .textTheme
               .bodyLarge!

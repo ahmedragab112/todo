@@ -1,13 +1,17 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/task_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskesTab extends StatelessWidget {
   const TaskesTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppProvider provider = Provider.of<AppProvider>(context);
     return Column(
       children: [
         CalendarTimeline(
@@ -22,7 +26,7 @@ class TaskesTab extends StatelessWidget {
           activeBackgroundDayColor: Theme.of(context).colorScheme.secondary,
           dotsColor: Theme.of(context).colorScheme.onPrimary,
           selectableDayPredicate: (date) => true,
-          locale: 'en_ISO',
+          locale: provider.languageCode,
         ),
         const SizedBox(
           height: 20,

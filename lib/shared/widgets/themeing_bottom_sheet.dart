@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ThemeingBottomSheet extends StatelessWidget {
   const ThemeingBottomSheet({super.key});
 
@@ -21,7 +21,7 @@ class ThemeingBottomSheet extends StatelessWidget {
             child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Light'),
+                 Text(AppLocalizations.of(context)!.light,),
                    provider.appTheme==ThemeMode.light?
                 const Icon(Icons.done):const SizedBox.shrink(),
                
@@ -38,7 +38,7 @@ class ThemeingBottomSheet extends StatelessWidget {
             child:  Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Dark'),
+                 Text(AppLocalizations.of(context)!.dark,),
                 provider.appTheme==ThemeMode.dark?
                 const Icon(Icons.done):const SizedBox.shrink(),
               ],

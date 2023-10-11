@@ -1,4 +1,12 @@
 {
-    "helloWorld": "Hello World!"
- 
+  "todo": "ToDo",
+  "taskTitle": "Task Title",
+  "taskDescription": "Task Description",
+  "language": "Language",
+  "theme": "Theme",
+  "english": "English",
+  "arabic": "Arabic",
+  "light": "Light", 
+  "dark": "Dark",
+  "setting": "Setting"
   }
