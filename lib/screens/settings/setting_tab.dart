@@ -21,7 +21,7 @@ class SettingTab extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!
-                .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+                .copyWith(fontSize: 14, fontWeight: FontWeight.w400,color: Theme.of(context).colorScheme.onSurface),
           ),
           SizedBox(
             height: 20,
@@ -40,7 +40,7 @@ class SettingTab extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!
-                .copyWith(fontSize: 14, fontWeight: FontWeight.w400),
+                .copyWith(color: Theme.of(context).colorScheme.onSurface,fontSize: 14, fontWeight: FontWeight.w400),
           ),
           SizedBox(
             height: 20,

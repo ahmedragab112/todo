@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo/screens/settings/setting_tab.dart';
 import 'package:todo/screens/taskes/home_tasks.dart';
+import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/add_task_bottom_sheet.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -28,6 +29,7 @@ class _HomeLayoutState extends State<HomeLayout> {
       ),
       body: pages[index],
       bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).colorScheme.error,
         notchMargin: 8,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
@@ -53,16 +55,20 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(
+        shape: CircleBorder(
           side: BorderSide(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onPrimary,
             width: 5,
           ),
         ),
+        backgroundColor: AppColor.primryColorLight,
         onPressed: () {
           showAddTasks();
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,

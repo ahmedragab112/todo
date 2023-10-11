@@ -19,7 +19,7 @@ class TaskItem extends StatelessWidget {
         width: 352,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onSecondary,
             borderRadius: BorderRadius.circular(
               15,
             ),
@@ -55,19 +55,20 @@ class TaskItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.watch_later_outlined,
                       size: 10,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                     const SizedBox(
                       width: 10,
                     ),
                     Text(
                       '10:30',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -76,11 +77,15 @@ class TaskItem extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.primryColorLight,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: const BorderSide(color: Colors.transparent))),
               onPressed: () {},
-              child: const Icon(Icons.done),
+              child: const Icon(
+                Icons.done,
+                color: Colors.white,
+              ),
             )
           ],
         ),

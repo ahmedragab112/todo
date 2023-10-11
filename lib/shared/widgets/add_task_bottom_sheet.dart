@@ -15,7 +15,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   final TextEditingController taskdescriptionController =
       TextEditingController();
 
-   DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!
-                .copyWith(color: Colors.grey),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
@@ -110,7 +110,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 
   selectDate(BuildContext context) async {
-  DateTime? chosenDate =await showDatePicker(
+    DateTime? chosenDate = await showDatePicker(
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime.now(),
@@ -121,9 +121,6 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
       return;
     }
     selectedDate = chosenDate;
-    setState(() {
-      
-    });
-    
+    setState(() {});
   }
 }
