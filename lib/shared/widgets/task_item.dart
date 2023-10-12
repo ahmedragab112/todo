@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class TaskItem extends StatelessWidget {
   const TaskItem({super.key});
 
@@ -15,11 +16,11 @@ class TaskItem extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(20),
       child: Container(
-        height: 115,
-        width: 352,
+        height: 115.h,
+        width: 352.w,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.onSecondary,
             borderRadius: BorderRadius.circular(
               15,
             ),
@@ -32,22 +33,22 @@ class TaskItem extends StatelessWidget {
               thickness: 4,
               color: AppColor.primryColorLight,
             ),
-            const SizedBox(
-              width: 20,
+             SizedBox(
+              width: 20.w,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Task',
+                 AppLocalizations.of(context)!.taskTitle,
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
                       .copyWith(color: AppColor.primryColorLight),
                 ),
                 Text(
-                  'Task description',
+                  AppLocalizations.of(context)!.taskDescription,
                   style: Theme.of(context)
                       .textTheme
                       .bodySmall!
@@ -55,19 +56,20 @@ class TaskItem extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.watch_later_outlined,
-                      size: 10,
+                      size: 10.w,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
-                    const SizedBox(
-                      width: 10,
+                     SizedBox(
+                      width: 10.w,
                     ),
                     Text(
                       '10:30',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(fontSize: 12, fontWeight: FontWeight.w400),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
@@ -76,11 +78,15 @@ class TaskItem extends StatelessWidget {
             const Spacer(),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.primryColorLight,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: const BorderSide(color: Colors.transparent))),
               onPressed: () {},
-              child: const Icon(Icons.done),
+              child: const Icon(
+                Icons.done,
+                color: Colors.white,
+              ),
             )
           ],
         ),

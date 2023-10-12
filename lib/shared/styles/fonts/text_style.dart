@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppFontStyle {
-  static TextStyle bodyLarge = GoogleFonts.poppins(
+  static final TextStyle bodyLarge = GoogleFonts.poppins(
     color: Colors.black,
-    fontSize: 22,
+    fontSize: 22.sp,
     fontWeight: FontWeight.bold,
   );
-  static TextStyle bodyMedium = GoogleFonts.poppins(
+  static final TextStyle bodyMedium = GoogleFonts.poppins(
     color: Colors.black,
-    fontSize: 17,
+    fontSize: 17.sp,
     fontWeight: FontWeight.bold,
   );
-  static TextStyle bodySmall = GoogleFonts.poppins(
+  static final TextStyle bodySmall = GoogleFonts.poppins(
     color: Colors.black,
-    fontSize: 15,
+    fontSize: 15.sp,
     fontWeight: FontWeight.bold,
   );
 }

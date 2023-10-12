@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 
 class SettingBox extends StatelessWidget {
@@ -11,11 +12,11 @@ class SettingBox extends StatelessWidget {
       onTap: function,
       child: Container(
         padding: const EdgeInsets.all(8),
-        margin: const EdgeInsets.only(left: 20),
-        height: 50,
-        width: 319,
+        margin: EdgeInsets.only(left: 20.w),
+        height: 50.h,
+        width: 319.w,
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.background,
             border: Border.all(color: AppColor.primryColorLight, width: 2),
             shape: BoxShape.rectangle),
         child:
