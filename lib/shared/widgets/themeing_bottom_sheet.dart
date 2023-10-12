@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ThemeingBottomSheet extends StatelessWidget {
   const ThemeingBottomSheet({super.key});
 
@@ -10,37 +12,57 @@ class ThemeingBottomSheet extends StatelessWidget {
     AppProvider provider = Provider.of<AppProvider>(context);
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           InkWell(
             onTap: () {
               provider.changeTheme(ThemeMode.light);
+              Navigator.pop(context);
             },
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 Text(AppLocalizations.of(context)!.light,),
-                   provider.appTheme==ThemeMode.light?
-                const Icon(Icons.done):const SizedBox.shrink(),
-               
+                Text(
+                  AppLocalizations.of(context)!.light,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(color: Theme.of(context).colorScheme.secondary),
+                ),
+                provider.appTheme == ThemeMode.light
+                    ? Icon(
+                        Icons.done,
+                        color: Theme.of(context).colorScheme.secondary,
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           InkWell(
             onTap: () {
               provider.changeTheme(ThemeMode.dark);
+              Navigator.pop(context);
             },
-            child:  Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                 Text(AppLocalizations.of(context)!.dark,),
-                provider.appTheme==ThemeMode.dark?
-                const Icon(Icons.done):const SizedBox.shrink(),
+                Text(
+                  AppLocalizations.of(context)!.dark,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(color: Theme.of(context).colorScheme.secondary),
+                ),
+                provider.appTheme == ThemeMode.dark
+                    ? Icon(
+                        Icons.done,
+                        color: Theme.of(context).colorScheme.secondary,
+                      )
+                    : const SizedBox.shrink(),
               ],
             ),
           )

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/tasks_filed.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({super.key});
 
@@ -26,46 +28,46 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Add New Task',
+          AppLocalizations.of(context)!.addNewTask,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
-                .copyWith(color: AppColor.primryColorLight),
+                .copyWith(color: Theme.of(context).colorScheme.onPrimary),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: 20.h,
           ),
           TaskFiled(
             controller: taskTitleController,
-            labelText: 'Title',
-            hintText: 'Enter Task Title',
+            labelText: AppLocalizations.of(context)!.title,
+            hintText: AppLocalizations.of(context)!.enterTitle,
           ),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: 20.h,
           ),
           TaskFiled(
             controller: taskdescriptionController,
-            labelText: 'Description',
-            hintText: 'Enter Task Description',
+            labelText: AppLocalizations.of(context)!.taskDescription,
+            hintText: AppLocalizations.of(context)!.enterTaskDescription,
           ),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: 20.h,
           ),
           InkWell(
             onTap: () {
               selectDate(context);
             },
             child: Text(
-              'Select time',
+             AppLocalizations.of(context)!.selectTime,
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
-                  .copyWith(color: AppColor.primryColorLight),
+                  .copyWith(color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
-          const SizedBox(
-            height: 20,
+           SizedBox(
+            height: 20.h,
           ),
           Text(
             selectedDate.toString().substring(0, 10),
@@ -75,29 +77,29 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 .copyWith(color: Theme.of(context).colorScheme.primary),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: 10.h,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.primryColorLight),
             onPressed: () {},
             child: Text(
-              'Add Task',
+               AppLocalizations.of(context)!.addNewTask,
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
                   .copyWith(color: Colors.white),
             ),
           ),
-          const SizedBox(
-            height: 10,
+           SizedBox(
+            height: 10.h,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () {},
             child: Text(
-              'Delete Task',
+              AppLocalizations.of(context)!.deleteTask,
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
@@ -109,7 +111,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
     );
   }
 
-  selectDate(BuildContext context) async {
+ void selectDate(BuildContext context) async {
     DateTime? chosenDate = await showDatePicker(
         context: context,
         initialDate: selectedDate,

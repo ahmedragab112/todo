@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:todo/shared/widgets/setting_box.dart';
@@ -24,8 +25,8 @@ class SettingTab extends StatelessWidget {
                 .bodyLarge!
                 .copyWith(color: Theme.of(context).colorScheme.onSurface),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           SettingBox(
             text: provider.languageCode == 'en'
@@ -35,8 +36,8 @@ class SettingTab extends StatelessWidget {
               showLanguageBottomSheet(context);
             },
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           Text(
             AppLocalizations.of(context)!.theme,
@@ -44,8 +45,8 @@ class SettingTab extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
           ),
-          const SizedBox(
-            height: 20,
+          SizedBox(
+            height: 20.h,
           ),
           SettingBox(
             text: provider.appTheme == ThemeMode.light
@@ -62,6 +63,14 @@ class SettingTab extends StatelessWidget {
 
   showThemeingBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Theme.of(context).colorScheme.onBackground,
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide:const BorderSide(
+          color: Colors.white,
+          width: 2,
+        ),
+      ),
       context: context,
       builder: (context) => const ThemeingBottomSheet(),
     );
@@ -69,6 +78,14 @@ class SettingTab extends StatelessWidget {
 
   showLanguageBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Theme.of(context).colorScheme.onBackground,
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide:const BorderSide(
+          color: Colors.white,
+          width: 2,
+        ),
+      ),
       context: context,
       builder: (context) => const LanguageBottomSheet(),
     );

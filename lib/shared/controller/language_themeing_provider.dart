@@ -8,7 +8,7 @@ class AppProvider extends ChangeNotifier {
     languageCode = language;
     notifyListeners();
   }
-
+  
   void changeTheme(ThemeMode newTheme) {
     appTheme = newTheme;
     notifyListeners();

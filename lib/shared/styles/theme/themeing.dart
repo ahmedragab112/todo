@@ -8,7 +8,7 @@ class AppTheme {
     colorScheme:const ColorScheme(
         brightness: Brightness.light,
         primary: Colors.grey,
-        onPrimary: Colors.white,
+        onPrimary: AppColor.primryColorLight,
         secondary: Colors.black,
         onSecondary: Colors.white,
         error: Colors.white,
@@ -41,7 +41,7 @@ class AppTheme {
      colorScheme:const ColorScheme(
         brightness: Brightness.dark,
         primary: Colors.white,
-        onPrimary: AppColor.darkColor,
+        onPrimary: Colors.white,
         secondary: Colors.white,
         onSecondary: AppColor.darkColor,
         error: AppColor.darkColor,
