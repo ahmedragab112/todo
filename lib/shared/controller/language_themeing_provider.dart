@@ -4,12 +4,12 @@ class AppProvider extends ChangeNotifier {
   String languageCode = 'en';
   ThemeMode appTheme = ThemeMode.light;
 
-  changeLanguage(String language) {
+  void changeLanguage(String language) {
     languageCode = language;
     notifyListeners();
   }
-
-  changeTheme(ThemeMode newTheme) {
+  
+  void changeTheme(ThemeMode newTheme) {
     appTheme = newTheme;
     notifyListeners();
   }
