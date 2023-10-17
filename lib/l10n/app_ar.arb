@@ -10,7 +10,7 @@
  "dark": "غامق",
  "setting": "الاعدادات",
  "addNewTask": "اضافه مهمه جديده",
- "deleteTask": "مسح المهمه", 
+ "deleteTask": "الغاء", 
  "description":"تفاصيل", 
  "enterTaskDescription":"ادخل التفاصيل",
  "title":"العنوان",

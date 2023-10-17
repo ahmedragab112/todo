@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,15 +10,21 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:todo/shared/styles/theme/themeing.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
+  AppProvider provider = AppProvider();
+ await Future.wait([
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    ),
+    provider.cashTheme(), 
+    provider.cashLanguage(),
+  ]);  
+  FirebaseFirestore.instance.disableNetwork();
   runApp(
     ChangeNotifierProvider(
-      create: (context) => AppProvider(),
-      child: const MyApp(), 
+      create: (context) => provider,
+      child: const MyApp(),
     ),
   );
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:todo/model/task_model.dart';
 import 'package:todo/shared/network/firebase/firebase_manger.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
@@ -87,10 +86,52 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColor.primryColorLight),
             onPressed: () {
-              FirebaseManger.addTask(TaskModel(
-                  date:  DateFormat('yyyy-MM-dd – kk:mm').format(selectedDate),
+              FirebaseManger.addTask(
+                TaskModel(
+                  date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch,
                   description: taskdescriptionController.text,
-                  title: taskTitleController.text));
+                  title: taskTitleController.text,
+                ),
+              );
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(
+                      'The task have been added',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColor.primryColorLight),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          taskTitleController.clear();
+                          taskdescriptionController.clear();
+                        },
+                        child: Text(
+                          'Add another task',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red),
+                        onPressed: () {
+                          taskTitleController.clear();
+                          taskdescriptionController.clear();
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Cancle',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+     
             },
             child: Text(
               AppLocalizations.of(context)!.addNewTask,
@@ -103,17 +144,6 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
           SizedBox(
             height: 10.h,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-            onPressed: () {},
-            child: Text(
-              AppLocalizations.of(context)!.deleteTask,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyLarge!
-                  .copyWith(color: Colors.white),
-            ),
-          )
         ],
       ),
     );

@@ -18,7 +18,11 @@ class AppTheme {
         surface: Colors.white,
         onSurface: Colors.black),
     appBarTheme:
-        const AppBarTheme(elevation: 0.0, color: AppColor.primryColorLight),
+      const   AppBarTheme(elevation: 0.0, centerTitle: true, 
+      iconTheme: IconThemeData(
+      color: AppColor.primryColorLight
+      )
+    ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       elevation: 0.0,
       
@@ -51,7 +55,7 @@ class AppTheme {
         surface: Colors.black,
         onSurface: Colors.white),
     appBarTheme:
-        const AppBarTheme(elevation: 0.0, color: AppColor.primryColorLight),
+        const AppBarTheme(elevation: 0.0, centerTitle: true),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       elevation: 0.0,
     ),
