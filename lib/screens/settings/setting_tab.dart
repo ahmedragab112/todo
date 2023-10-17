@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:todo/shared/widgets/setting_box.dart';
-import 'package:todo/shared/widgets/themeing_bottom_sheet.dart';
+import 'package:todo/shared/widgets/bottom_sheets/themeing_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../shared/widgets/language_bottom_sheet.dart';
+import '../../shared/widgets/bottom_sheets/language_bottom_sheet.dart';
 
 class SettingTab extends StatelessWidget {
   const SettingTab({super.key});

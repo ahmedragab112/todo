@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/screens/settings/setting_tab.dart';
-import 'package:todo/screens/taskes/home_tasks.dart';
+import 'package:todo/screens/tasks/home_tasks.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
-import 'package:todo/shared/widgets/add_task_bottom_sheet.dart';
+import 'package:todo/shared/widgets/bottom_sheets/add_task_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -20,18 +20,23 @@ class _HomeLayoutState extends State<HomeLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      appBar: AppBar(
-        title: Text(
-          index == 0
-              ? AppLocalizations.of(context)!.todo
-              : AppLocalizations.of(context)!.setting,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(color: Colors.white),
-        ),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverAppBar(
+            backgroundColor: Theme.of(context).colorScheme.background,
+            title: Text(
+              index == 0
+                  ? AppLocalizations.of(context)!.todo
+                  : AppLocalizations.of(context)!.setting,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: Theme.of(context).colorScheme.onPrimary),
+            ),
+          ),
+        ],
+        body: pages[index],
       ),
-      body: pages[index],
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).colorScheme.error,
         notchMargin: 8,
