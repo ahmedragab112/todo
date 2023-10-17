@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo/model/task_model.dart';
-import 'package:todo/router/routes.dart';
 import 'package:todo/shared/network/firebase/firebase_manger.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 
