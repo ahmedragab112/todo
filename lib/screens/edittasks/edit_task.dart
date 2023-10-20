@@ -6,7 +6,8 @@ import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/tasks_filed.dart';
 
 class EditTaskPage extends StatefulWidget {
-  const EditTaskPage({super.key});
+  const EditTaskPage({super.key, required this.task});
+  final TaskModel task;
 
   @override
   State<EditTaskPage> createState() => _EditTaskPageState();
@@ -16,10 +17,16 @@ class _EditTaskPageState extends State<EditTaskPage> {
   DateTime selectedDate = DateTime.now();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.task.title;
+    descriptionController.text = widget.task.description;
+    selectedDate = DateTime.fromMillisecondsSinceEpoch(widget.task.date);
+  }
 
   @override
   Widget build(BuildContext context) {
-    String taskId = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
@@ -48,7 +55,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
             children: [
               Text(
                 'Edit Task',
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .copyWith(color: Theme.of(context).colorScheme.onError),
                 textAlign: TextAlign.center,
               ),
               SizedBox(
@@ -74,7 +84,10 @@ class _EditTaskPageState extends State<EditTaskPage> {
                 },
                 child: Text(
                   'Seleted date',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.onError),
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -101,11 +114,20 @@ class _EditTaskPageState extends State<EditTaskPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40))),
                   onPressed: () {
-                 
+                    FirebaseManger.update(TaskModel(
+                        date: selectedDate.millisecondsSinceEpoch,
+                        description: descriptionController.text,
+                        title: titleController.text,
+                        id: widget.task.id,
+                        isDone: widget.task.isDone));
+                    Navigator.pop(context);
                   },
-                  child: const Text(
+                  child: Text(
                     'Save Changes',
-                    style: TextStyle(color: Colors.white),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: Theme.of(context).colorScheme.onError),
                   ),
                 ),
               ),

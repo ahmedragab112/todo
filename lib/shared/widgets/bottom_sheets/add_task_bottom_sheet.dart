@@ -93,45 +93,44 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   title: taskTitleController.text,
                 ),
               );
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(
-                      'The task have been added',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.primryColorLight),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          taskTitleController.clear();
-                          taskdescriptionController.clear();
-                        },
-                        child: Text(
-                          'Add another task',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red),
-                        onPressed: () {
-                          taskTitleController.clear();
-                          taskdescriptionController.clear();
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          'Cancle',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      )
-                    ],
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text(
+                    'The task have been added',
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                );
-     
+                  actions: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.primryColorLight),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        taskTitleController.clear();
+                        taskdescriptionController.clear();
+                      },
+                      child: Text(
+                        'Add another task',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                    ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                      onPressed: () {
+                        taskTitleController.clear();
+                        taskdescriptionController.clear();
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'Cancle',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    )
+                  ],
+                ),
+              );
             },
             child: Text(
               AppLocalizations.of(context)!.addNewTask,
@@ -151,12 +150,29 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 
   void selectDate(BuildContext context) async {
     DateTime? chosenDate = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(
-          const Duration(days: 365),
-        ));
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: AppColor.primryColorLight,
+              onPrimary: Colors.white,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+      lastDate: DateTime.now().add(
+        const Duration(days: 365),
+      ),
+    );
     if (chosenDate == null) {
       return;
     }
