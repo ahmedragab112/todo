@@ -14,7 +14,7 @@ class AppProvider extends ChangeNotifier {
 
   void changeTheme(ThemeMode newTheme) {
     appTheme = newTheme;
-
+    savingTheme(newTheme);
     notifyListeners();
   }
 

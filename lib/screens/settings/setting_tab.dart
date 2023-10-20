@@ -66,7 +66,7 @@ class SettingTab extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide:const BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white,
           width: 2,
         ),
@@ -81,7 +81,7 @@ class SettingTab extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.onBackground,
       shape: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide:const BorderSide(
+        borderSide: const BorderSide(
           color: Colors.white,
           width: 2,
         ),

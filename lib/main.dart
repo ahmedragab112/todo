@@ -11,6 +11,7 @@ import 'package:todo/shared/controller/language_themeing_provider.dart';
 import 'package:todo/shared/styles/theme/themeing.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   AppProvider provider = AppProvider();
  await Future.wait([

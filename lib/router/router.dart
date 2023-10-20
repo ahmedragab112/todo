@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/layout/home.dart';
-import 'package:todo/screens/edittasks/edit_task.dart';
+import 'package:todo/screens/task_details/task_details.dart';
 
 import 'routes.dart';
 
@@ -11,11 +11,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeLayout(),
         );
-      case Routes.editTaskPage:
-        return MaterialPageRoute(
-          builder: (_) => const EditTaskPage(),
-        );
-
+        
       default:
         return MaterialPageRoute(
           builder: (_) => const HomeLayout(),
