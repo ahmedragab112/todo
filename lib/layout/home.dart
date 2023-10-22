@@ -38,18 +38,27 @@ class _HomeLayoutState extends State<HomeLayout> {
         body: pages[index],
       ),
       bottomNavigationBar: BottomAppBar(
+        
+
         color: Theme.of(context).colorScheme.error,
         notchMargin: 8,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
+          
+
           currentIndex: index,
           onTap: (value) {
             index = value;
             setState(() {});
           },
+
+            
           iconSize: 20.h,
+           
           items: const [
             BottomNavigationBarItem(
+              
+
               icon: ImageIcon(
                 AssetImage('assets/images/Icon awesome-list.png'),
               ),

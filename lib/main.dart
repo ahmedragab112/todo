@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeLayout,
+        initialRoute: Routes.loginPage,
         locale: Locale(provider.languageCode),
       ),
     );
