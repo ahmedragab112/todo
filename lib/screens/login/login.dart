@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todo/screens/sign_up/sign_up.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -11,9 +12,10 @@ class LoginPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Login/SignUp', style: TextStyle(color: Colors.white)),
+            title: const Text('Login/SignUp',
+                style: TextStyle(color: Colors.white)),
             centerTitle: true,
-            bottom: TabBar(tabs: [
+            bottom: const TabBar(tabs: [
               Tab(
                 text: 'Login',
               ),
@@ -29,6 +31,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: emailController,
+                    decoration: InputDecoration(hintText: 'Email'),
+                   keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -44,6 +48,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   TextFormField(
                     controller: passwordController,
+                      decoration: InputDecoration(hintText: 'password', )
+                      ,
+                      obscureText: true,
+                
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -57,12 +65,12 @@ class LoginPage extends StatelessWidget {
                         print(emailController.text);
                       }
                     },
-                    child: Text('login'),
+                    child: const Text('login'),
                   )
                 ],
               ),
             ),
-           
+            SignUp()
           ])),
     );
   }
