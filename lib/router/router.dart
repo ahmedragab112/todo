@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo/layout/home.dart';
-import 'package:todo/screens/task_details/task_details.dart';
 
 import 'routes.dart';
 
