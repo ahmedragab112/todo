@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/layout/home.dart';
-
+import 'package:todo/screens/login/login.dart';
 import 'routes.dart';
 
 class AppRouter {
@@ -10,10 +10,14 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeLayout(),
         );
-        
+      case Routes.loginPage:
+        return MaterialPageRoute(
+          builder: (context) =>  LoginPage(),
+        );
+
       default:
         return MaterialPageRoute(
-          builder: (_) => const HomeLayout(),
+          builder: (_) =>  LoginPage(),
         );
     }
   }

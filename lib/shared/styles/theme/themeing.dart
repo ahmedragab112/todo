@@ -29,6 +29,7 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColor.bgColorLight,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      
       backgroundColor: Colors.transparent,
       selectedItemColor: AppColor.primryColorLight,
       elevation: 0,
