@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:todo/model/user_model.dart';
+import 'package:todo/shared/network/firebase/firebase_manger.dart';
 
 class AppProvider extends ChangeNotifier {
   String languageCode = 'en';
@@ -12,9 +15,23 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  User? firebaseUser;
+  UserModel? userModel;
+  AppProvider() {
+    firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null) {
+      initUser();
+    }
+  }
   void changeTheme(ThemeMode newTheme) {
     appTheme = newTheme;
     savingTheme(newTheme);
+    notifyListeners();
+  }
+
+  initUser() async {
+     firebaseUser = FirebaseAuth.instance.currentUser;
+    userModel = await FirebaseManger.readUser(firebaseUser!.uid);
     notifyListeners();
   }
 

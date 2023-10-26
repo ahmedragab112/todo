@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/router/routes.dart';
 import 'package:todo/screens/settings/setting_tab.dart';
 import 'package:todo/screens/tasks/home_tasks.dart';
+import 'package:todo/shared/controller/language_themeing_provider.dart';
+import 'package:todo/shared/network/firebase/firebase_manger.dart';
 import 'package:todo/shared/styles/colors/colors.dart';
 import 'package:todo/shared/widgets/bottom_sheets/add_task_bottom_sheet.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -18,16 +22,26 @@ class _HomeLayoutState extends State<HomeLayout> {
   int index = 0;
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return Scaffold(
       extendBody: true,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
+            leadingWidth: 100,
+            leading: IconButton(
+                onPressed: () {
+                  FirebaseManger.logOutUser();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, Routes.loginPage, (route) => false);
+                },
+                icon: const Icon(Icons.logout)),
             backgroundColor: Theme.of(context).colorScheme.background,
             title: Text(
               index == 0
-                  ? AppLocalizations.of(context)!.todo
-                  : AppLocalizations.of(context)!.setting,
+                  ? '${AppLocalizations.of(context)!.todo} ${provider.userModel!.name}'
+                  : AppLocalizations.of(context)!.setting +
+                      provider.userModel!.name,
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
@@ -38,27 +52,18 @@ class _HomeLayoutState extends State<HomeLayout> {
         body: pages[index],
       ),
       bottomNavigationBar: BottomAppBar(
-        
-
         color: Theme.of(context).colorScheme.error,
         notchMargin: 8,
         shape: const CircularNotchedRectangle(),
         child: BottomNavigationBar(
-          
-
           currentIndex: index,
           onTap: (value) {
             index = value;
             setState(() {});
           },
-
-            
           iconSize: 20.h,
-           
           items: const [
             BottomNavigationBarItem(
-              
-
               icon: ImageIcon(
                 AssetImage('assets/images/Icon awesome-list.png'),
               ),

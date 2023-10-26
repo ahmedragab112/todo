@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/model/task_model.dart';
@@ -119,7 +120,7 @@ class _EditTaskPageState extends State<EditTaskPage> {
                         description: descriptionController.text,
                         title: titleController.text,
                         id: widget.task.id,
-                        isDone: widget.task.isDone));
+                        isDone: widget.task.isDone, userId:FirebaseAuth.instance.currentUser!.uid ));
                     Navigator.pop(context);
                   },
                   child: Text(

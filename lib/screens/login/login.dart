@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo/router/routes.dart';
 import 'package:todo/screens/sign_up/sign_up.dart';
+import 'package:todo/shared/controller/language_themeing_provider.dart';
+import 'package:todo/shared/network/firebase/firebase_manger.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -8,6 +12,7 @@ class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppProvider>(context);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -31,8 +36,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   TextFormField(
                     controller: emailController,
-                    decoration: InputDecoration(hintText: 'Email'),
-                   keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(hintText: 'Email'),
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -48,10 +53,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   TextFormField(
                     controller: passwordController,
-                      decoration: InputDecoration(hintText: 'password', )
-                      ,
-                      obscureText: true,
-                
+                    decoration: const InputDecoration(
+                      hintText: 'password',
+                    ),
+                    obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -59,13 +64,45 @@ class LoginPage extends StatelessWidget {
                       return null;
                     },
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        print(emailController.text);
-                      }
-                    },
-                    child: const Text('login'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          FirebaseManger.loginUser(
+                              emailAddress: emailController.text,
+                              password: passwordController.text,
+                              onSuccess: () {
+                                provider.initUser();
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  Routes.homeLayout,
+                                  (route) => false,
+                                );
+                              },
+                              onFail: (error) {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: false,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Error'),
+                                    content: Text(error.toString()),
+                                    actions: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('oka'))
+                                    ],
+                                  ),
+                                );
+                              });
+                        }
+                      },
+                      child: const Text('login'),
+                    ),
                   )
                 ],
               ),

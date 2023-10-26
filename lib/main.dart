@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,15 +11,15 @@ import 'package:todo/shared/styles/theme/themeing.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   AppProvider provider = AppProvider();
- await Future.wait([
-    Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    ),
-    provider.cashTheme(), 
+  await Future.wait([
+    provider.cashTheme(),
     provider.cashLanguage(),
-  ]);  
-  FirebaseFirestore.instance.disableNetwork();
+  ]);
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => provider,
@@ -47,7 +46,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.loginPage,
+        initialRoute: provider.firebaseUser!=null?Routes.homeLayout: Routes.loginPage,
         locale: Locale(provider.languageCode),
       ),
     );

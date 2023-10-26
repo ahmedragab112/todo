@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/model/task_model.dart';
@@ -92,6 +93,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch,
                     description: taskdescriptionController.text,
                     title: taskTitleController.text,
+                    userId:FirebaseAuth.instance.currentUser!.uid
                   ),
                 );
                 showDialog(

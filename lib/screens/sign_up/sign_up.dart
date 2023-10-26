@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo/router/routes.dart';
+import 'package:todo/shared/network/firebase/firebase_manger.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class SignUp extends StatelessWidget {
         children: [
           TextFormField(
             controller: nameController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'name',
             ),
             validator: (value) {
@@ -26,7 +28,7 @@ class SignUp extends StatelessWidget {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'age',
             ),
             controller: ageController,
@@ -38,7 +40,7 @@ class SignUp extends StatelessWidget {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'email',
             ),
             controller: emailController,
@@ -50,7 +52,7 @@ class SignUp extends StatelessWidget {
             },
           ),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'password',
             ),
             controller: passwordController,
@@ -61,13 +63,48 @@ class SignUp extends StatelessWidget {
               return null;
             },
           ),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                print(emailController.text);
-              }
-            },
-            child: Text('Sign up'),
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  FirebaseManger.signUp(
+                      emailAddress: emailController.text,
+                      password: passwordController.text,
+                      onError: (error) {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('error have been ouccerd '),
+                            content: Text(error),
+                            actions: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Ok'))
+                            ],
+                          ),
+                        );
+                      },
+                      onSccuess: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          Routes.homeLayout,
+                          (route) => false,
+                        );
+                      },
+                      age: ageController.text,
+                      name: nameController.text);
+                }
+              },
+              child: const Text('Sign up'),
+            ),
           )
         ],
       ),
