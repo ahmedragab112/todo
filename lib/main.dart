@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         themeMode: provider.appTheme,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
+        ////AHMED RAGAB 
         onGenerateRoute: AppRouter.generatRoute,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
